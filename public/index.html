@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+    <title>Scraping With Mongoose</title>
+    <style>
+      body { background-image: url("images/backgroundclouds.jpg") }
+      header {
+        color: rgb(183, 190, 255);
+        margin: 0 auto;
+        text-align: center;
+        background-image: url("images/banner2.jpg");
+        background-size: 100%;
+        width: 90%;
+      }
+      header img {
+        margin: 0 auto;
+      }
+      header h1 {
+        text-shadow: 3px 3px rgb(63, 63, 63);
+        position: relative;
+        top: -20px;
+      }
+      #wrapper {
+        font-family: 'Roboto', sans-serif;
+        text-align: center;
+        width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      #articles {
+        display: inline-block;
+        overflow: auto;
+        width: 90%;
+        height: 700px;
+      }
+      #comments {
+        float: right;
+        width: 30%;
+      }
+      textarea, input {
+        display: block;
+        width: 100%;
+        background-color: #FCF5C7;
+      }
+      input {
+        height: 36px;
+        font-size: 24px;
+      }
+      textarea {
+        height: 200px;
+        font-size: 18px;
+      }
+      a:link {
+    text-decoration: none;
+    color: black;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
+}
+#logo {
+  margin: 0 auto;
+  width: 400px;
+  height: auto;
+}
+
+    </style>
+  </head>
+  <body>
+<header> <img id="logo" src="images/logo.png">
+  <h1>News Scraper</h1></header>
+    <div id="wrapper">
+      
+     
+
+      <div id="articles"></div>
+      <div id="comments"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>
