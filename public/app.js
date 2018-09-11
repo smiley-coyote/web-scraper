@@ -25,7 +25,7 @@ $.getJSON("/articles", function(data) {
 $(document).on("click", ".note", function() {
   console.log("click");
   // Empty the note from the note section
-  $("#note").empty();
+  $("#notes").empty();
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
 

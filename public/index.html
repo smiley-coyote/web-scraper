@@ -30,17 +30,24 @@
       #wrapper {
         font-family: 'Roboto', sans-serif;
         text-align: center;
-        width: 960px;
         margin-left: auto;
         margin-right: auto;
+        width: 960px;
       }
       #articles {
         display: inline-block;
         overflow: auto;
-        width: 90%;
+        width: 60%;
         height: 700px;
+        margin-right: auto;
+        margin-left: auto;
       }
-      #comments {
+      #articles img {
+        width: 600px;
+        height: auto;
+      }
+      #notes {
+        height: 900px;
         float: right;
         width: 30%;
       }
@@ -91,6 +98,7 @@ a:active {
       <div id="articles"></div>
       <div id="notes"></div>
     </div>
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="app.js"></script>
   </body>
