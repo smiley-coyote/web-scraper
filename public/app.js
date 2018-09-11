@@ -15,17 +15,17 @@ $.getJSON("/articles", function(data) {
     + "</h2>" 
     + "<br />" 
     + "</a>"
-    + "<button data-id='" + data[i]._id + "' class='comment'>Comment</button>"
+    + "<button data-id='" + data[i]._id + "' class='note'>Comment</button>"
     + "</p>");
   }
 });
 
 
-// Whenever someone clicks a comment button
-$(document).on("click", ".comment", function() {
+// Whenever someone clicks a note button
+$(document).on("click", ".note", function() {
   console.log("click");
-  // Empty the comments from the note section
-  $("#comments").empty();
+  // Empty the note from the note section
+  $("#note").empty();
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
 
@@ -39,26 +39,26 @@ $(document).on("click", ".comment", function() {
       console.log(data);
       // image of article
       // The title of the article
-      $("#comments").append("<h2>" + data.title + "</h2>");
+      $("#notes").append("<h2>" + data.title + "</h2>");
       // An input to enter a new title
-      $("#comments").append("<input id='titleinput' name='title' >");
+      $("#notes").append("<input id='titleinput' name='title' >");
       // A textarea to add a new note body
-      $("#comments").append("<textarea id='bodyinput' name='body'></textarea>");
+      $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
-      $("#comments").append("<button data-id='" + data._id + "' id='submitcomment'>Save Note</button>");
+      $("#notes").append("<button data-id='" + data._id + "' id='submitnote'>Save Note</button>");
 
       // If there's a note in the article
-      if (data.comment) {
+      if (data.note) {
         // Place the title of the note in the title input
-        $("#titleinput").val(data.comment.title);
+        $("#titleinput").val(data.note.title);
         // Place the body of the note in the body textarea
-        $("#bodyinput").val(data.comment.body);
+        $("#bodyinput").val(data.note.body);
       }
     });
 });
 
 // When you click the savenote button
-$(document).on("click", "#submitcomment", function() {
+$(document).on("click", "#submitnote", function() {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
 console.log(thisId);
@@ -77,8 +77,8 @@ console.log(thisId);
     .then(function(data) {
       // Log the response
       console.log(data);
-      // Empty the comments section
-      $("#comments").empty();
+      // Empty the notes section
+      $("#notes").empty();
     });
 
   // Also, remove the values entered in the input and textarea for note entry
