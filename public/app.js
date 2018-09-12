@@ -3,7 +3,7 @@
 $.getJSON("/articles", function(data) {
 
   // For each one
-  for (var i = 0; i < data.length; i++) {
+  for (i = 0; i < data.length; i++) {
 
     // Display the apropos information on the page
     $("#articles").append("<p>" 
@@ -37,22 +37,27 @@ $(document).on("click", ".note", function() {
     // With that done, add the note information to the page
     .then(function(data) {
       console.log(data);
-      // image of article
       // The title of the article
       $("#notes").append("<h2>" + data.title + "</h2>");
+      // previous comments
+      $("#notes").append("<div id='comment-box'></div>");
       // An input to enter a new title
       $("#notes").append("<input id='titleinput' name='title' >");
       // A textarea to add a new note body
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
-      $("#notes").append("<button data-id='" + data._id + "' id='submitnote'>Save Note</button>");
+      $("#notes").append("<button data-id='" + data._id + "' id='submitnote'>Submit Comment</button>");
 
       // If there's a note in the article
       if (data.note) {
+        for(i=0;i<data.note.length; i++){
         // Place the title of the note in the title input
-        $("#titleinput").val(data.note.title);
+        $("#comment-box").append(data.note[i].title);
         // Place the body of the note in the body textarea
-        $("#bodyinput").val(data.note.body);
+        $("#comment-box").append(data.note[i].body);
+
+        $("#comment-box").append("<br>");
+        }
       }
     });
 });
