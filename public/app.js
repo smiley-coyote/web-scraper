@@ -38,13 +38,13 @@ $(document).on("click", ".note", function() {
     .then(function(data) {
       console.log(data);
       // The title of the article
-      $("#notes").append("<h2>" + data.title + "</h2>");
+      $("#notes").append("<h3>" + data.title + "</h3>");
       // previous comments
       $("#notes").append("<div id='comment-box'></div>");
       // An input to enter a new title
-      $("#notes").append("<input id='titleinput' name='title' >");
+      $("#notes").append("<input id='titleinput' name='title' placeholder='username'>");
       // A textarea to add a new note body
-      $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
+      $("#notes").append("<textarea id='bodyinput' name='body' placeholder='comment'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
       $("#notes").append("<button data-id='" + data._id + "' id='submitnote'>Submit Comment</button>");
 
@@ -54,8 +54,8 @@ $(document).on("click", ".note", function() {
         // Place the title of the note in the title input
         $("#comment-box").append(data.note[i].title);
         // Place the body of the note in the body textarea
-        $("#comment-box").append(data.note[i].body);
-
+        $("#comment-box").append(": " + data.note[i].body + " ");
+        // $("#comment-box").append("<a href='/delete/'" + data.note[i]._id + " id='delete'>x</a>");
         $("#comment-box").append("<br>");
         }
       }
@@ -90,3 +90,4 @@ console.log(thisId);
   $("#titleinput").val("");
   $("#bodyinput").val("");
 });
+

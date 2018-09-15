@@ -127,6 +127,10 @@ app.post("/articles/:id", function(req, res) {
     });
 });
 
+app.post("/delete/:id", function(req, res) {
+  console.log(req.params.id);
+})
+
 // Start the server
 app.listen(PORT, function() {
   console.log("App running on port " + PORT + "!");
