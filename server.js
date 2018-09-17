@@ -74,7 +74,7 @@ app.get("/scrape", function(req, res) {
     });
 
     // If we were able to successfully scrape and save an Article, send a message to the client
-    res.send("Scrape Complete");
+    res.redirect("/");
   });
 });
 
@@ -149,6 +149,15 @@ app.post("/delete/:id", function(req, res) {
       res.json(err);
     });
 });
+
+app.post("/article/delete/:id", function(req, res){
+  db.Article.deleteOne(
+    {
+      _id: req.params.id
+    }).then(function(dbArticle){
+      res.json(dbArticle)
+    })
+})
 
 // Start the server
 app.listen(PORT, function() {

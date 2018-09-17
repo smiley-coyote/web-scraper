@@ -16,14 +16,23 @@ console.log(data.length);
     + "<br />" 
     + "</a>"
     + "<button data-id='" + data[i]._id + "' class='note'>Comment</button>"
+    + "<button data-id='" + data[i]._id + "' class='delete-article'>Delete Article</button>"
     + "</p>");
   }
 });
 
+$(document).on("click", ".delete-article", function() {
+  var thisId = $(this).attr("data-id");
+  $.ajax({
+    method: "POST",
+    url: "/article/delete/" + thisId
+  }).then(function(data){
+    location.reload();
+  })
+})
 
 // Whenever someone clicks a comment button
 $(document).on("click", ".note", function() {
-  console.log("click");
   // Empty the note from the note section
   $("#notes").empty();
   // Save the id from the p tag
@@ -62,7 +71,7 @@ $(document).on("click", ".note", function() {
     });
 });
 
-// When you click the savenote button
+// When you click the submit comment button
 $(document).on("click", "#submitnote", function() {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");

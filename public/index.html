@@ -27,6 +27,14 @@
         position: relative;
         top: -20px;
       }
+      header a {
+        float: right;
+        background-color: purple;
+        color: white;
+      }
+      header a:hover {
+        color: yellow;
+      }
       #wrapper {
         font-family: 'Roboto', sans-serif;
         text-align: center;
@@ -107,11 +115,10 @@ a:active {
   </head>
   <body>
 <header> <img id="logo" src="images/logo.png">
-  <h1>News Scraper</h1></header>
+  <h1>News Scraper</h1> <a href="/scrape">Add New Articles!</a></header>
     <div id="wrapper">
       
      
-
       <div id="articles"></div>
       <div id="notes"></div>
     </div>
