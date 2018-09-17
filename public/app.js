@@ -1,10 +1,10 @@
 // Grab the articles as a json
 
 $.getJSON("/articles", function(data) {
-
+  var articleCount = (data.length -1)
   // For each one
-  for (i = 0; i < data.length; i++) {
-
+  for (i = articleCount; i > 0; i--) {
+console.log(data.length);
     // Display the apropos information on the page
     $("#articles").append("<p>" 
     + "<a href=" + data[i].link + " >"
@@ -21,7 +21,7 @@ $.getJSON("/articles", function(data) {
 });
 
 
-// Whenever someone clicks a note button
+// Whenever someone clicks a comment button
 $(document).on("click", ".note", function() {
   console.log("click");
   // Empty the note from the note section
@@ -55,7 +55,7 @@ $(document).on("click", ".note", function() {
         $("#comment-box").append(data.note[i].title);
         // Place the body of the note in the body textarea
         $("#comment-box").append(": " + data.note[i].body + " ");
-        // $("#comment-box").append("<a href='/delete/'" + data.note[i]._id + " id='delete'>x</a>");
+        $("#comment-box").append("<button data-id='" + data.note[i]._id + "' id='delete'>x</button>");
         $("#comment-box").append("<br>");
         }
       }
@@ -82,12 +82,49 @@ console.log(thisId);
     .then(function(data) {
       // Log the response
       console.log(data);
-      // Empty the notes section
-      $("#notes").empty();
+      
     });
 
   // Also, remove the values entered in the input and textarea for note entry
   $("#titleinput").val("");
   $("#bodyinput").val("");
+  $("#comment-box").empty();
+  $.ajax({
+    method: "GET",
+    url: "/articles/" + thisId
+  }).then(function(data){
+    for(i=0;i<data.note.length; i++){
+      // Place the title of the note in the title input
+      $("#comment-box").append(data.note[i].title);
+      // Place the body of the note in the body textarea
+      $("#comment-box").append(": " + data.note[i].body + " ");
+      $("#comment-box").append("<button data-id='" + data.note[i]._id + "' id='delete'>x</button>");
+      $("#comment-box").append("<br>");
+      }
+  })
 });
+
+$(document).on("click", "#delete", function() {
+  var thisId = $(this).attr("data-id");
+  console.log(thisId);
+  $.ajax({
+    method: "POST",
+    url: "/delete/" + thisId
+  }).then(function(data){
+    $.ajax({
+      method: "GET",
+      url: "/articles/" + thisId
+    }).then(function(data){
+      $("#comment-box").empty();
+      for(i=0;i<data.note.length; i++){
+        // Place the title of the note in the title input
+        $("#comment-box").append(data.note[i].title);
+        // Place the body of the note in the body textarea
+        $("#comment-box").append(": " + data.note[i].body + " ");
+        $("#comment-box").append("<button data-id='" + data.note[i]._id + "' id='delete'>x</button>");
+        $("#comment-box").append("<br>");
+        }
+    })
+  })
+})
 
